@@ -1,10 +1,12 @@
 import React from 'react';
 import { Shield, ArrowRight, Users, Target, ChevronRight, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Navbar } from '../components/Navbar';
 
 export function About() {
   return (
     <div className="min-h-screen bg-black text-white">
+      <Navbar />
       {/* Hero Section */}
       <section className="relative min-h-[40vh] sm:min-h-[50vh] lg:min-h-[60vh] flex items-center overflow-hidden pt-16 sm:pt-20">
         {/* Background Effects */}

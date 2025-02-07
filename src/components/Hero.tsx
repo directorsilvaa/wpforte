@@ -1,9 +1,13 @@
 import React from 'react';
-import { Shield, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Shield, ArrowRight, ChevronDown } from 'lucide-react';
 
 export function Hero() {
-  const navigate = useNavigate();
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
     <div id="hero" className="relative min-h-[100svh] flex items-center overflow-hidden">
@@ -26,50 +30,6 @@ export function Hero() {
         {/* Gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/90" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30" />
-      </div>
-
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        {/* HUD-like elements - Hidden on mobile */}
-        <div className="absolute inset-0 hidden sm:block">
-          <div className="absolute top-0 left-0 w-32 sm:w-64 h-32 sm:h-64 border border-brand-red/20 rounded-full 
-                       animate-[spin_10s_linear_infinite] opacity-30" />
-          <div className="absolute bottom-0 right-0 w-48 sm:w-96 h-48 sm:h-96 border border-brand-red/10 rounded-full 
-                       animate-[spin_15s_linear_infinite_reverse] opacity-20" />
-        </div>
-        
-        {/* Scanning Line Effect */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-brand-red/30 to-transparent animate-scan" />
-        </div>
-
-        {/* Tech Grid */}
-        <div className="absolute inset-0">
-          <div className="h-full w-full" style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(213,0,0,0.05) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(213,0,0,0.05) 1px, transparent 1px)
-            `,
-            backgroundSize: '20px 20px',
-            mask: 'linear-gradient(to bottom, transparent, black 30%, black 70%, transparent)'
-          }} />
-        </div>
-
-        {/* Floating Data Points */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(10)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 sm:w-2 h-1 sm:h-2 rounded-full bg-brand-red/30"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `float ${5 + Math.random() * 5}s infinite ease-in-out ${Math.random() * 5}s`,
-                opacity: 0.1 + Math.random() * 0.3,
-              }}
-            />
-          ))}
-        </div>
       </div>
 
       {/* Content */}
@@ -109,10 +69,18 @@ export function Hero() {
                 <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
               <button 
-                onClick={() => navigate('/about')}
+                onClick={() => scrollToSection('gallery')}
                 className="institutional-button-secondary group"
               >
-                <span className="relative z-10">Conheça Nossa Empresa</span>
+                <span className="relative z-10">Ver Projetos</span>
+                <ChevronDown className="h-5 w-5 ml-2 group-hover:translate-y-1 transition-transform" />
+              </button>
+              <button 
+                onClick={() => scrollToSection('about')}
+                className="institutional-button-secondary group"
+              >
+                <span className="relative z-10">Conheça a Empresa</span>
+                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
@@ -143,6 +111,34 @@ export function Hero() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Mobile Stats */}
+        <div className="mt-8 lg:hidden">
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              { number: '15+', label: 'Anos de Experiência' },
+              { number: '1000+', label: 'Clientes Atendidos' },
+              { number: '24/7', label: 'Monitoramento' },
+              { number: '99.9%', label: 'Taxa de Satisfação' }
+            ].map((stat, index) => (
+              <div 
+                key={index}
+                className="institutional-stat-card group animate-fade-in backdrop-blur-sm p-4"
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-red/5 to-transparent rounded-lg" />
+                <div className="relative">
+                  <div className="text-xl font-bold text-white mb-1">
+                    {stat.number}
+                  </div>
+                  <div className="text-xs text-gray-400">
+                    {stat.label}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
