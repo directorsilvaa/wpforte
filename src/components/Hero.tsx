@@ -37,15 +37,6 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Left Column - Main Content */}
           <div className="space-y-6 sm:space-y-10">
-            {/* Logo */}
-            <div className="flex items-center space-x-3 animate-fade-in">
-              <div className="relative">
-                <Shield className="h-8 w-8 sm:h-10 sm:w-10 text-brand-red" />
-                <div className="absolute inset-0 bg-brand-red/20 rounded-full blur animate-pulse-slow" />
-              </div>
-              <span className="text-white font-bold text-xl sm:text-2xl">WP FORTE</span>
-            </div>
-
             {/* Main Message */}
             <div className="space-y-4 sm:space-y-6">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight animate-fade-in">
@@ -112,33 +103,33 @@ export function Hero() {
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Mobile Stats */}
-        <div className="mt-8 lg:hidden">
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { number: '15+', label: 'Anos de Experiência' },
-              { number: '1000+', label: 'Clientes Atendidos' },
-              { number: '24/7', label: 'Monitoramento' },
-              { number: '99.9%', label: 'Taxa de Satisfação' }
-            ].map((stat, index) => (
-              <div 
-                key={index}
-                className="institutional-stat-card group animate-fade-in backdrop-blur-sm p-4"
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-red/5 to-transparent rounded-lg" />
-                <div className="relative">
-                  <div className="text-xl font-bold text-white mb-1">
-                    {stat.number}
-                  </div>
-                  <div className="text-xs text-gray-400">
-                    {stat.label}
+          {/* Mobile Stats */}
+          <div className="mt-8 lg:hidden">
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { number: '15+', label: 'Anos de Experiência' },
+                { number: '1000+', label: 'Clientes Atendidos' },
+                { number: '24/7', label: 'Monitoramento' },
+                { number: '99.9%', label: 'Taxa de Satisfação' }
+              ].map((stat, index) => (
+                <div 
+                  key={index}
+                  className="institutional-stat-card group animate-fade-in backdrop-blur-sm p-4"
+                  style={{ animationDelay: `${index * 200}ms` }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-red/5 to-transparent rounded-lg" />
+                  <div className="relative">
+                    <div className="text-xl font-bold text-white mb-1">
+                      {stat.number}
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      {stat.label}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
